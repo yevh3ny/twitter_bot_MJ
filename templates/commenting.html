@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel X bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Admin Panel X bot</h1>
+        <h2>Commenting Page</h2>
+        <p style="color: red; font-size: 20px;">{{ flash }}</p>
+        <form action="{{ url_for('send_comment') }}" method="POST">
+            <label for="comment">Enter your comments (each comment on a new line):</label><br>
+            <textarea id="comment" name="comment" rows="10" cols="50"></textarea><br><br>
+            <h2>Selected Posts for Commenting</h2>
+            <ul>
+                {% for post in posts_info %}
+                <li>
+                    <p style="color: red;">Post Link: <a href="{{ post['link'] }}">{{ post['link'] }}</a></p>
+					<p style="color: red;">Comment from ChatGPT:</p>
+					<p> error code 429 - Rate limit reached for requests </p>
+                    <input type="hidden" name="tweet_ids[]" value="{{ post['link'].split('/')[-1].split('#')[0] }}">
+                </li>
+                {% endfor %}
+            </ul>
+            <input type="submit" value="Submit Comment">
+        </form>
+        <hr>
+        <hr>
+
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='/posts'">Posts</button>
+        <button onclick="window.location.href='/settings'">Settings</button>
+    </div>
+</body>
+
+</html>

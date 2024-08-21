@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel X bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function showAllPosts(account) {
+            const hiddenPosts = document.querySelectorAll(`.hidden-${account}`);
+            hiddenPosts.forEach(post => {
+                post.style.display = 'block';
+            });
+            const moreButton = document.getElementById(`more-${account}`);
+            moreButton.style.display = 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Admin Panel X bot</h1>
+        <h2>Accounts for monitoring</h2>
+        <ul>
+            {% for account in accounts %}
+            <li style="padding: 10px 0 10px 10px;"><a class="acc_link" href="#{{ account }}">{{ account }}</a></li>
+            {% endfor %}
+        </ul>
+        <h2>All Posts for monitoring accounts</h2>
+        <form action="{{ url_for('commenting') }}" method="POST">
+            {% for account in accounts %}
+            <h3 id="{{ account }}">Username: {{ account }}</h3>
+            {% if account_posts[account] %}
+            {% for post in account_posts[account][:5] %}
+            <div class="post">
+                <p>Post: {{ post['text'] }}</p>
+                <p>Link: <a href="{{ post['link'] }}">{{ post['link'] }}</a></p>
+                <p>Date: {{ post['date'] }}</p>
+                <div style="display: inline-flex;">
+                    <input type="checkbox" name="selected_posts" value="{{ post['link'] }}">
+                    <p> check for comment</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% for post in account_posts[account][5:] %}
+            <div class="post hidden-{{ account }}" style="display: none;">
+                <p>Post: {{ post['text'] }}</p>
+                <p>Link: <a href="{{ post['link'] }}">{{ post['link'] }}</a></p>
+                <p>Date: {{ post['date'] }}</p>
+                <div style="display: inline-flex;">
+                    <input type="checkbox" name="selected_posts" value="{{ post['link'] }}">
+                    <p> check for comment</p>
+                </div>
+            </div>
+            {% endfor %}
+            <button type="button" id="more-{{ account }}" onclick="showAllPosts('{{ account }}')">More...</button>
+            {% else %}
+			<div class="post">
+            <p>No data for this account.</p>
+			</div>
+            {% endif %}
+            {% endfor %}
+            <input type="submit" value="Commenting">
+        </form>
+        <hr>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='/settings'">Settings</button>
+        <button onclick="window.location.href='/posts'">Posts</button>
+        <!-- <button onclick="window.location.href='/commenting'">Comments</button> -->
+    </div>
+</body>
+
+</html>

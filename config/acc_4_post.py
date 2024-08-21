@@ -1,0 +1,24 @@
+ACCOUNTS = [
+    {
+        'NAME': 'MankoskiA53906',
+        'CONSUMER_KEY': 'VueEujmahdJgCyIKqH5JnVipn',
+        'CONSUMER_SECRET': 'hmsGhj3SEIeDYzh2ZV2olQ5AhN98pTTBe2OUWnDMhOEhdhUPHm',
+        'ACCESS_TOKEN': '1790423565994455040-KnRrJzJOBaaB9MzlcQmeNZnNFPbPsl',
+        'ACCESS_TOKEN_SECRET': 'fZVjoERCTSQoExFFnJfpjgrT27piqiLZfVusDwzZfkodV',
+        'BEARER_TOKEN': 'AAAAAAAAAAAAAAAAAAAAAH2%2FuwEAAAAAMNEA7ifuAdaoPhPDYysVjMORtC4%3D6JZkmPKBwZ5NgJSvt4BkAnwurEbPs6rLaSGWFXzfK5DIQedeSX',
+        # OAuth 2.0 Client ID
+        'CLIENT_ID': 'YmxrQnMwX0Rudkh1TXBkVVJlS3M6MTpjaQ',
+        'CLIENT_SECRET': 'KMLpX-6xaCbuUpaLrkYWLUaKu8_zv3xl_tPPQtC1VxGZJ1P353',
+    },
+    {
+        'NAME': 'PeytonHue1592',
+        'CONSUMER_KEY': 'Hs2gfcefmI43BvVGg2P8FdklH',
+        'CONSUMER_SECRET': 'z7sqc0kDPbwNz5rxAxMES3VNdAzgLj0UWvQjF5q6Mse7aNH532',
+        'ACCESS_TOKEN': '1791947110041960448-NSXHOvHQUgnEEujvmR5fK5VAXNc4IB',
+        'ACCESS_TOKEN_SECRET': 'u4E6gs5WlxOAaCyGnCshSmbA6opCEV4ZSctO2RI1BYeZL',
+        'BEARER_TOKEN': 'AAAAAAAAAAAAAAAAAAAAADriuwEAAAAA3p1awtqaWdr8SmOJXAEvHYIIfcI%3Dt1DOBHvBC4fnZylGG8juHVZIcF8UojO6nWIbqUgOwZ6pcbOJsw',
+        # OAuth 2.0 Client ID
+        'CLIENT_ID': 'T0s0bm1OelhFYzgxcGRMck05eno6MTpjaQ',
+        'CLIENT_SECRET': 'giY1bJj8wmjjIkg65THLAidTdvf0zjAiNbafVXgIXPMAlt9PEx',
+    }
+]

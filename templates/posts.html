@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel X bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Admin Panel X bot</h1>
+        <h2>Posts</h2>
+
+
+        <!-- Section for latest 100 posts -->
+        <section>
+            <h3>Latest 100 Posts</h3>
+            <button onclick="window.location.href='/all_posts'">View all posts</button>
+        </section>
+
+        <!-- Section for posts with keywords -->
+        <section>
+            <h3>Posts with Keywords</h3>
+            <button onclick="window.location.href='/keyword_posts'">View post by Keywords</button>
+        </section>
+        <hr>
+        <hr>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='/settings'">Settings</button>
+        <!-- <button onclick="window.location.href='/commenting'">Comments</button> -->
+    </div>
+</body>
+
+</html>

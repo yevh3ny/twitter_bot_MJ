@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Commenting Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Commenting Page</h1>
+        <p style="color: green; font-size: 20px;">{{flash}}</p>
+
+        <hr>
+        <hr>
+
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='/posts'">Posts</button>
+        <button onclick="window.location.href='/settings'">Settings</button>
+    </div>
+</body>
+
+</html>

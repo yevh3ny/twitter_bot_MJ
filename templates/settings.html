@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel X bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Admin Panel X bot</h1>
+        <h2>Settings</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Форма для ввода аккаунтов -->
+        <form id="accountsForm" method="POST" action="{{ url_for('save_accounts') }}">
+            <h3>Accounts for monitoring (comma-separated)</h3>
+            <label for="input1">Usernames:</label>
+            <input type="text" id="input1" name="input1" value="{{ ', '.join(account_monitor) or '' }}">
+            <br>
+            <button type="submit">Save</button>
+        </form>
+
+        <hr>
+
+        <!-- Форма для ввода ключевых слов -->
+        <form id="keywordsForm" method="POST" action="{{ url_for('save_keywords') }}">
+            <h3>Keywords for monitoring (comma-separated)</h3>
+            <label for="keyword1">Keywords:</label>
+            <input type="text" id="keyword1" name="keyword1" value="{{ ', '.join(keywords) or '' }}">
+            <br>
+            <button type="submit">Save</button>
+        </form>
+
+        <hr>
+
+        <h2>Commenting Accounts</h2>
+        <form method="POST" action="{{ url_for('save_com_accounts') }}">
+            {% for account in com_accounts %}
+            <div class="acc_4_com">
+                <input type="checkbox" id="com_account_{{ loop.index }}" name="com_accounts" value="{{ account }}" {% if
+                    account in selected_com_accounts %} checked {% endif %}>
+                <label for="com_account_{{ loop.index }}">{{ account['NAME'] }}</label>
+            </div>
+            {% endfor %}
+            <button type="submit">Save</button>
+        </form>
+
+        <hr>
+
+        <h2>Auto Mode</h2>
+        <form id="autoModeForm" method="POST" action="{{ url_for('save_auto_mode_route') }}">
+            <div class="acc_4_com">
+                <label for="auto_mode">Enable Auto Mode:</label>
+                <input type="checkbox" id="auto_mode" name="auto_mode" {% if auto_mode %}checked{% endif %}>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+
+        <hr>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='/posts'">Posts</button>
+    </div>
+
+    <div id="loaderModal" class="modal">
+        <div class="modal-content">
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script>
+        function showLoader() {
+            var modal = document.getElementById('loaderModal');
+            modal.style.display = 'block';
+
+            setTimeout(function () {
+                modal.style.display = 'none';
+            }, 20000);
+        }
+
+        document.getElementById('accountsForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = this;
+
+            var formData = new FormData(form);
+
+            showLoader();
+
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    // Possibly handle response here
+                }
+            };
+            xhr.send(formData);
+        });
+
+        document.getElementById('keywordsForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = this;
+
+            var formData = new FormData(form);
+
+            showLoader();
+
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    // Possibly handle response here
+                }
+            };
+            xhr.send(formData);
+        });
+    </script>
+</body>
+
+</html>
